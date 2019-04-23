@@ -27,7 +27,6 @@ def add_recipe():
 def increase_likes(recipe_id):
     the_recipe = mongo.db.recipes.find_one({'_id': ObjectId(recipe_id)})
     current_likes = int(the_recipe['likes'])
-    # test= the_recipe
     new_likes = str(current_likes + 1)
     mongo.db.recipes.update({'_id': ObjectId(recipe_id)},
     {
@@ -46,7 +45,6 @@ def increase_likes(recipe_id):
         'likes': new_likes
     })
     return redirect(url_for('get_recipes'))
-    # return render_template('test.html', test=test)
     
     
 @app.route('/insert_recipe', methods=['POST'])
@@ -105,8 +103,6 @@ def insert_recipe():
     recipes = mongo.db.recipes
     recipes.insert_one(recipe)
     return redirect(url_for('get_recipes'))
-    
-    # return render_template('test.html', test = test)
     
 
 @app.route('/open_recipe/<recipe_id>')
