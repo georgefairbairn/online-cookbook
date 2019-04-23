@@ -1,0 +1,92 @@
+{% extends 'base.html' %} {% block content %}
+<div class="parallax-container">
+    <div class="parallax">
+        <img src="{{recipe.photo_link}}">
+    </div>
+</div>
+<div class="section white">
+    <div class="row container">
+        <div class="row">
+            <h3 class="header title">{{recipe.name.title()}}</h3>
+        </div>
+        <div class="row">
+            <div class="col s12 m3 offset-m9">
+                <div class="col s4 center-align">
+                    <a href="{{url_for('increase_likes', recipe_id = recipe._id)}}" id="like-thumb" class="btn white deep-orange-text text-accent-2 tooltipped" data-position="top" data-tooltip="Like"><i class="material-icons">thumb_up</i></a>
+                </div>
+                <div class="col s4 center-align">
+                    <a href="{{url_for('edit_recipe', recipe_id = recipe._id)}}" class="btn blue tooltipped" data-position="top" data-tooltip="Edit"><i class="material-icons">edit</i></a>
+                </div>
+                <div class="col s4 center-align">
+                    <a href="#delete-modal" class="btn red modal-trigger tooltipped" data-position="top" data-tooltip="Delete"><i class="material-icons">delete</i></a>
+                </div>
+                <div id="delete-modal" class="modal">
+                    <div class="modal-content">
+                        <h4 class="title">delete recipe?</h4>
+                        <p>This recipe cannot be recovered once deleted</p>
+                    </div>
+                    <div class="modal-footer">
+                        <a href="{{url_for('delete_recipe', recipe_id = recipe._id)}}" class="waves-effect waves-red btn red accent-2">YES</a>
+                        <a class="modal-close waves-effect btn green accent-3">NO</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s12 m6">
+                <label>INGREDIENTS</label>
+                <table class="striped centered">
+                    <thead>
+                        <tr>
+                            <th>Ingredient</th>
+                            <th>Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for ingredient, amount in recipe.ingredients.items() %}
+                        <tr>
+                            <td>{{ingredient}}</td>
+                            <td>{{amount}}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <div class="col s12 m6">
+                <label>METHOD</label>
+                <ul id="step-tabs" class="tabs deep-orange-text text-accent-2">
+                    {% for instruction in recipe.method %}
+                    <li class="tab col"><a href="#step-{{loop.index}}">Step {{loop.index}}</a></li>
+                    {% endfor %}
+                </ul>
+                {% for instruction in recipe.method %}
+                <div id="step-{{loop.index}}" class="col s12">
+                    <p class="flow-text">{{instruction}}</p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="row center-align">
+            <div class="col s3">
+                <label>CUISINE</label>
+                <p>{{recipe.cuisine.title()}}</p>
+            </div>
+            <div class="col s3">
+                <label>DIFFICULTY</label>
+                <p>{{recipe.difficulty.upper()}}</p>
+            </div>
+            <div class="col s3">
+                <label>VIEWS</label>
+                <p>{{recipe.views}}</p>
+            </div>
+            <div class="col s3">
+                <label>LIKES</label>
+                <p>{{recipe.likes}}</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="parallax-container">
+    <div class="parallax"><img src="{{recipe.photo_link}}"></div>
+</div>
+{% endblock %}

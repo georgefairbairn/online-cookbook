@@ -1,0 +1,226 @@
+{% extends 'base.html' %} {% block content %}
+<div class="container">
+    <div class="row">
+        <h1 class="title">edit recipe</h1>
+    </div>
+    <div class="row">
+        <form action="{{url_for('update_recipe', recipe_id = recipe._id)}}" method="POST" enctype="multipart/form-data" class="col s12">
+            <section>
+                <div class="row">
+                    <div class="col s12">
+                        <label for="author">RECIPE NAME</label>
+                    </div>
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix">assignment</i>
+                        <input placeholder="e.g. Mac' & Cheese" id="recipe_name" name="recipe_name" type="text" value="{{recipe.name}}" class="validate">
+                    </div>
+                </div>
+            </section>
+            <section>
+                <div class="row">
+                    <div class="col s10">
+                        <label for="author">RECIPE PHOTO LINK</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s10">
+                        <div class="input-field col s10">
+                            <i class="material-icons prefix">link</i>
+                            <input placeholder="e.g. https://www.google.co.uk/images/dog.png" id="recipe_photo" name="recipe_photo" type="text" class="validate" value="{{recipe.photo_link}}">
+                        </div>
+                        <div class="col s2">
+                            <a id="link_info" class="waves-effect btn-small center deep-orange accent-2"><i class="material-icons">help</i></a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section>
+                <div class="row">
+                    <div class="col s12">
+                        <label for="cuisine">INGREDIENTS</label>
+                    </div>
+                    <div class="col s12">
+                        <table class="striped centered">
+                            <thead>
+                                <tr>
+                                    <th><i class="material-icons prefix">gradient</i></th>
+                                    <th><i class="material-icons prefix">av_timer</i></th>
+                                </tr>
+                            </thead>
+                            <tbody id="ingredients">
+                                {% for ingredient, amount in recipe.ingredients.items() %}
+                                <tr>
+                                    <td>
+                                        <input placeholder="e.g. Cheese" name="ingredient_name{{loop.index}}" id="ingredient_name{{loop.index}}" type="text" class="validate" value="{{ingredient}}">
+                                        <label for="ingredient_name">Ingredient</label>
+                                    </td>
+                                    <td>
+                                        <input placeholder="e.g. 50g" name="ingredient_amount{{loop.index}}" id="ingredient_amount{{loop.index}}" type="text" class="validate" value="{{amount}}">
+                                        <label for="ingredient_amount">Amount</label>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s12 center">
+                        <a id="add_ingredient" class="waves-effect btn-small center deep-orange accent-2">ADD INGREDIENT<i class="material-icons right">add</i></a>
+                    </div>
+                </div>
+            </section>
+            <section>
+                <div class="row">
+                    <div class="col s12">
+                        <label for="author">AUTHOR</label>
+                    </div>
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix">person</i>
+                        <input placeholder="e.g. George" id="recipe_author" name="recipe_author" type="text" class="validate" value="{{recipe.author}}">
+                    </div>
+                </div>
+            </section>
+            <section>
+                <div class="row">
+                    <div class="col s12">
+                        <label for="cuisine">CUISINE</label>
+                    </div>
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix">local_dining</i>
+                        <select id="cuisine" name="cuisine">
+                  <option value="" disabled selected>Choose...</option>
+                      <option value="Italian" {% if recipe.cuisine=='Italian' %} selected="selected"{% endif %}>Italian</option>
+                      <option value="Mexican" {% if recipe.cuisine=='Mexican' %} selected="selected"{% endif %}>Mexican</option>
+                      <option value="Indian" {% if recipe.cuisine=='Indian' %} selected="selected"{% endif %}>Indian</option>
+                      <option value="American" {% if recipe.cuisine=='American' %} selected="selected"{% endif %}>American</option>
+                      <option value="Chinese" {% if recipe.cuisine=='Chinese' %} selected="selected"{% endif %}>Chinese</option>
+                      <option value="Thai" {% if recipe.cuisine=='Thai' %} selected="selected"{% endif %}>Thai</option>
+                      <option value="Other" {% if recipe.cuisine=='Other' %} selected="selected"{% endif %}>Other</option>
+                </select>
+                    </div>
+                </div>
+            </section>
+            <section>
+                <div class="row">
+                    <div class="col s12">
+                        <label for="recipe_prep_time">PREPARATION TIME</label>
+                    </div>
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix">access_time</i>
+                        <input placeholder="e.g. 15 mins" id="recipe_prep_time" name="recipe_prep_time" type="text" class="validate" value="{{recipe.preparation_time}}">
+                    </div>
+                </div>
+            </section>
+            <section>
+                <div class="row">
+                    <div class="col s12">
+                        <label for="difficulty">COOKING TIME</label>
+                    </div>
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix">timer</i>
+                        <input placeholder="e.g. 30 mins" id="recipe_cook_time" name="recipe_cook_time" type="text" class="validate" value="{{recipe.cooking_time}}">
+                    </div>
+                </div>
+            </section>
+            <section>
+                <div class="row">
+                    <div class="col s12">
+                        <label for="cuisine">METHOD</label>
+                    </div>
+                    <div class="col s12">
+                        <table class="striped centered">
+                            <thead>
+                                <tr>
+                                    <th><i class="material-icons prefix">list</i></th>
+                                </tr>
+                            </thead>
+                            <tbody id="steps">
+                                {% for step in recipe.method %}
+                                <tr>
+                                    <td>
+                                        <textarea placeholder="e.g. First, dice the onion and garlic" name="step{{loop.index}}" id="step{{loop.index}}" type="text" class="materialize-textarea validate">{{step}}</textarea>
+                                        <label for="step">STEP</label>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s12 center">
+                        <a id="add_step" class="waves-effect btn-small center deep-orange accent-2">ADD STEP<i class="material-icons right">add</i></a>
+                    </div>
+                </div>
+            </section>
+            <section>
+                <div class="row">
+                    <div class="col s12">
+                        <label for="vegetarian">VEGETARIAN</label>
+                    </div>
+                    <div class="col s12">
+                        <div class="switch">
+                            <label>
+                        No
+                        <input id="vegetarian" name="vegetarian" type="checkbox" {% if recipe.vegetarian %} checked="checked"{% endif %}>
+                        <span class="lever"></span>
+                        Yes
+                    </label>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section>
+                <div class="row">
+                    <div class="col s12">
+                        <p class="range-field">
+                            <label for="recipe_serves">SERVES</label>
+                            <input type="range" id="recipe_serves" name="recipe_serves" min="1" max="8" value="{{recipe.serves}}" />
+                        </p>
+                    </div>
+                </div>
+            </section>
+            <section>
+                <div class="row">
+                    <div class="col s12">
+                        <label for="difficulty">DIFFICULTY</label>
+                    </div>
+                    <div class="col s4 center-align">
+                        <label>
+                  <input class="with-gap" name="difficulty" id="difficulty_easy" value="Easy" type="radio" {% if recipe.difficulty == 'Easy' %} checked="checked"{% endif %}/>
+                  <span>Easy</span>
+                </label>
+                    </div>
+                    <div class="col s4 center-align">
+                        <label>
+                  <input class="with-gap" name="difficulty" id="difficulty_medium" value="Medium" type="radio" {% if recipe.difficulty == 'Medium' %} checked="checked"{% endif %}/>
+                  <span>Medium</span>
+                </label>
+                    </div>
+                    <div class="col s4 center-align">
+                        <label>
+                  <input class="with-gap" name="difficulty" id="difficulty_hard" value="Hard" type="radio" {% if recipe.difficulty == 'Hard' %} checked="checked"{% endif %}/>
+                  <span>Hard</span>
+                </label>
+                    </div>
+                </div>
+            </section>
+            <section>
+                <div class="row">
+                    <div class="col s6 center">
+                        <button onclick="M.toast({html: 'Changes saved'})" class="waves-effect btn-small center btn green accent-3" type="submit" name="action">SAVE CHANGES
+                <i class="material-icons right">sync</i>
+            </button>
+                    </div>
+                    <div class="col s6 center">
+                        <a class="waves-effect btn-small center waves-red btn red accent-2" href="{{url_for('get_recipes')}}">DISCARD CHANGES
+                <i class="material-icons right">remove</i>
+            </a>
+                    </div>
+                </div>
+            </section>
+        </form>
+    </div>
+</div>
+{% endblock %}

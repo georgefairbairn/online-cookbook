@@ -1,0 +1,88 @@
+.card .card-content {
+    padding: 0px 0px 5px 0px;
+}
+
+.card-content .container {
+    width: 90%;
+}
+
+.card-content {
+    height: 200px;
+}
+
+.card-image {
+    height: 350px;
+}
+
+.card-recipe-info {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+.title {
+    font-family: 'Lobster', cursive;
+}
+
+a {
+    color: black;
+}
+
+.easy {
+    color: #64D345;
+}
+
+.medium {
+    color: #FFC300;
+}
+
+.hard {
+    color: #FF5733;
+}
+
+.switch label input[type=checkbox]:checked+.lever {
+    background-color: #ff6e40;
+}
+
+.switch label input[type=checkbox]:checked+.lever:after {
+    background-color: #ff6e40;
+}
+
+input[type=range]+.thumb {
+    background-color: #ff6e40;
+}
+
+input[type=range]::-webkit-slider-thumb {
+    background-color: #ff6e40;
+}
+
+input[type=range]::-moz-range-thumb {
+    background-color: #ff6e40;
+}
+
+input[type=range]::-ms-thumb {
+    background-color: #ff6e40;
+}
+
+.tabs .tab a.active {
+    background-color: transparent;
+    color: #ff6e40;
+}
+
+.tabs .tab a {
+    color: #ff6e40;
+}
+
+.tabs .indicator {
+    background-color: #ff6e40;
+}
+
+#like-thumb:hover {
+    color: #ff6e40;
+}
+
+@media only screen and (min-width: 993px) {
+    nav a.sidenav-trigger {
+        display: block;
+    }
+}
