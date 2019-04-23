@@ -36,16 +36,16 @@
         <li>
             <ul class="collapsible collapsible-accordion">
                 <li>
-                    <a class="collapsible-header">Filter by cuisine...<i class="material-icons">arrow_drop_down</i></a>
+                    <a class="collapsible-header waves-effect"><i class="material-icons">arrow_drop_down</i>Filter by cuisine...</a>
                     <div class="collapsible-body">
                         <ul>
-                            <li><a href="{{url_for('filter_recipes', cuisine = 'Italian')}}">Italian</a></li>
-                            <li><a href="{{url_for('filter_recipes', cuisine = 'Mexican')}}">Mexican</a></li>
-                            <li><a href="{{url_for('filter_recipes', cuisine = 'Indian')}}">Indian</a></li>
-                            <li><a href="{{url_for('filter_recipes', cuisine = 'American')}}">American</a></li>
-                            <li><a href="{{url_for('filter_recipes', cuisine = 'Chinese')}}">Chinese</a></li>
-                            <li><a href="{{url_for('filter_recipes', cuisine = 'Thai')}}">Thai</a></li>
-                            <li><a href="{{url_for('filter_recipes', cuisine = 'Other')}}">Other</a></li>
+                            <li class="center-align"><a href="{{url_for('filter_recipes', cuisine = 'Italian')}}">Italian</a></li>
+                            <li class="center-align"><a href="{{url_for('filter_recipes', cuisine = 'Mexican')}}">Mexican</a></li>
+                            <li class="center-align"><a href="{{url_for('filter_recipes', cuisine = 'Indian')}}">Indian</a></li>
+                            <li class="center-align"><a href="{{url_for('filter_recipes', cuisine = 'American')}}">American</a></li>
+                            <li class="center-align"><a href="{{url_for('filter_recipes', cuisine = 'Chinese')}}">Chinese</a></li>
+                            <li class="center-align"><a href="{{url_for('filter_recipes', cuisine = 'Thai')}}">Thai</a></li>
+                            <li class="center-align"><a href="{{url_for('filter_recipes', cuisine = 'Other')}}">Other</a></li>
                         </ul>
                     </div>
                 </li>
@@ -57,8 +57,8 @@
                     <a class="collapsible-header">Order by...<i class="material-icons">arrow_drop_down</i></a>
                     <div class="collapsible-body">
                         <ul>
-                            <li><a href="{{url_for('order_recipes', criteria = 'views')}}"><i class="material-icons">visibility</i>Views</a></li>
-                            <li><a href="{{url_for('order_recipes', criteria = 'likes')}}"><i class="material-icons">thumb_up</i>Likes</a></li>
+                            <li class="center-align"><a href="{{url_for('order_recipes', criteria = 'views')}}"><i class="material-icons">visibility</i>Views</a></li>
+                            <li class="center-align"><a href="{{url_for('order_recipes', criteria = 'likes')}}"><i class="material-icons">thumb_up</i>Likes</a></li>
                         </ul>
                     </div>
                 </li>

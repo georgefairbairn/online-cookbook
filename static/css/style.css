@@ -77,6 +77,14 @@ input[type=range]::-ms-thumb {
     background-color: #ff6e40;
 }
 
+.sidenav .user-view {
+    padding: 32px;
+}
+
+.sidenav .collapsible-header {
+    padding: 0 32px;
+}
+
 #like-thumb:hover {
     color: #ff6e40;
 }
