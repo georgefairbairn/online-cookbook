@@ -85,6 +85,17 @@ input[type=range]::-ms-thumb {
     padding: 0 32px;
 }
 
+/* label focus color */
+.input-field input[type=text]:not(.browser-default):focus:not([readonly]) {
+    border-bottom: 1px solid #ff6e40;
+    box-shadow: 0 1px 0 0 #ff6e40;
+}
+
+/* icon prefix focus color */
+.input-field .prefix.active {
+    color: #ff6e40;
+}
+
 #like-thumb:hover {
     color: #ff6e40;
 }
