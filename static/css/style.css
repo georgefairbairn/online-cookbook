@@ -100,6 +100,14 @@ input[type=range]::-ms-thumb {
     color: #ff6e40;
 }
 
+[type="radio"]:checked+span:after, [type="radio"].with-gap:checked+span:before, [type="radio"].with-gap:checked+span:after {
+    border: 2px solid #ff6e40;
+}
+
+[type="radio"]:checked+span:after, [type="radio"].with-gap:checked+span:after {
+    background-color: #ff6e40;
+}
+
 @media only screen and (min-width: 993px) {
     nav a.sidenav-trigger {
         display: block;
