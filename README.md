@@ -9,9 +9,9 @@ New recipes can be added, edited and deleted from the website. Recipes can also 
  
 ## UX
 
-The _munch_ online cookbook takes on a modern design by implementing features from the Materialize.css framework. A fixed navbar remains a constant theme throughout, with orange being the dominant colour throughout each of the templates (e.g. form input underlines).
+The _munch_ online cookbook takes on a modern design by implementing features from the Materialize.css framework. A `fixed navbar` remains a constant theme throughout, with orange being the dominant colour throughout each of the templates (e.g. form input underlines). The application was designed to work just as well on devices with small screens as those with larger ones.
 
-A sidenav consisting of the munch logo, as well as options to filter and sort has been implemented (detail of which can be found in the Features section below).
+A `sidenav` consisting of the _munch_ logo, as well as options to filter and sort has been implemented (detail of which can be found in the Features section below).
 
 <img src="static/img/cards.png" width="700">
 
@@ -49,12 +49,14 @@ The application primarily uses the Flask framework and Python logic to implement
 
 ### Filter by Cuisine
 
-The user can filter recipes on the homepage by cuisine, by selecting one in the `sidenav`. In order to filter recipes by category, it was important to ensure uniformity in the `cuisine` data (e.g. spelling and case). Therefore, it was very important to implement a dropdown cuisine selector when users added recipes. When the user selects a cuisine from the filter cuisine dropdown menu in the `sidenav`, the MongoDB database is queried for the selected cuisine, and results are returned in the context variables. During the Jinja for loop implemented on the page, Materialize `cards` will only be created for those recipes with the selected cuisine.
+The user can filter recipes on the homepage by cuisine, by selecting one in the `sidenav`. In order to filter recipes by category, it was important to ensure uniformity in the `cuisine` data (e.g. spelling and case). Therefore, it was very important to implement a dropdown cuisine selector when users added recipes. When the user selects a cuisine from the filter cuisine dropdown menu in the `sidenav`, the MongoDB database is queried for the selected cuisine, and results are returned in the context variables. During the Jinja `for` loop implemented on the page, Materialize `cards` will only be displayed for those recipes with the selected cuisine.
 
 
 ### Adding Ingredients, Amounts and Steps
 
-When the user is adding their recipe on the website, they have the option to add as many ingredients and amounts as they'd like. When the user clicks either of the 'ADD INGREDIENT', or 'ADD STEP' buttons, jQuery appends an additonal `input` field to the table that the user fills in, but also tags it with a unique `id`. When the recipe form is submitted, the python logic in the `/insert_recipe` zips the ingredient with it's corresponding amount and creates a dictionary of ingredient/amounts in the database. It also orders the steps in an array, and stores it in the database in this ordered format.
+A user can add as many ingredients and amounts as they'd like when adding a recipe to the website. If the user clicks either of the 'ADD INGREDIENT', or 'ADD STEP' buttons, jQuery appends an additonal `input` field to the table that the user fills in, but also tags it with a unique `id`. When the add recipe `form` is submitted, the python logic in the `/insert_recipe` zips the ingredient with it's corresponding amount and creates a dictionary of ingredient/amounts in the database. It also orders the steps in an array, and stores it in the database in this ordered format.
+
+<img src="static/img/mongo.png" width="700">
 
 ## Add and Edit Recipe
 
@@ -62,7 +64,7 @@ When the user adds a recipe to the website, details are gathered from the `reque
 
 ### Order Recipes  
 
-The user also has the option to order the recipes by views or by likes. This calls on a route in the `app.py` file that queries the database for all the recipes, but organises them in descending order of the criteria the user has selected (e.g. most viewed to least viewed). This is implemented by using:
+The user also has the option to order the recipes by views or by likes. This functionality can be found by clicking on the `sidenav` icon on mobile or larger screens, and then navigating to the relevant 'Order By...' dropdown. This calls on a route in the `app.py` file that queries the database for all the recipes, but organises them in descending order of the criteria the user has selected (e.g. most viewed to least viewed). This is implemented by using:
 
 `mongo.db.recipes.find().sort(criteria, -1)`
 
@@ -97,25 +99,16 @@ The user also has the option to order the recipes by views or by likes. This cal
     
 ### Automated Testing
 
-The python `unittest` module was used to derive automated tests for the functions in the `run.py` file.
+The python `unittest` module was used to derive automated tests for the functions in the `app.py` file.
 
 This involved scripting the below tests to test that the actual output matched the expected output:
 
-_test_answer_submission_
-_test_complete_game_
-_test_correct_answer_
-_test_first_riddle_loads_
-_test_game_percentage_
-_test_incorrect_answer_
-_test_incorrect_answer_logged_
-_test_index_html_return_
-_test_player_name_response_
-_test_quit_log_
-_test_quit_redirect_
-_test_riddle_html_return_
-_test_write_player_to_file_
-_test_answer_submission_
-_test_incorrect_answer_
+_test_add_recipe_loaded_
+_test_all_recipes_page_loaded_
+_test_flask_
+_test_insert_recipe_
+_test_set_filter_cuisine_
+_test_set_incorrect_filter_cuisine_
 
 ### Manual Testing
 
@@ -158,5 +151,5 @@ The code has been deployed to GitHub, and is hosted on [Heroku](https://online-c
 
 ### Content
 
-The recipe content on the website currently was obtained from [BBC GoodFood](https://www.bbcgoodfood.com/)
+The recipe content and images on the website currently were obtained from [BBC GoodFood](https://www.bbcgoodfood.com/)
     
